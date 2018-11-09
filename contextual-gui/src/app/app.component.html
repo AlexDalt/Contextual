@@ -1,0 +1,2 @@
+<app-login *ngIf="!login" (login)="loginChanged(true)"></app-login>
+<app-gallery *ngIf="login" (login)="loginChanged(false)"></app-gallery>

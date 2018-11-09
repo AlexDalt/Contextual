@@ -1,0 +1,31 @@
+<div class="header">
+    <h1 class="logo">Con<span class="dim">text</span>ual</h1>
+    <p class="description">Smart photo searching &amp; storage</p>
+</div>
+<div class="login mat-elevation-z2">
+  <div class="header">
+    <h2>{{creating ? 'Create account' : 'Sign In'}}</h2>
+    <button mat-icon-button class="arrow-back" (click)="swap()" *ngIf="creating">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+  <form #loginForm="ngForm" (submit)="submit(loginForm)">
+    <mat-form-field *ngIf="creating">
+      <input matInput placeholder="Name" type="name" [(ngModel)]="name" name="name" [required]="creating" #nameField />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" type="email" ngModel #email="ngModel" name="email" [required]="creating" #emailField />
+      <mat-error *ngIf="email.hasError('exists')">An account with this email address already exists</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" ngModel #password="ngModel" name="password" [required]="creating" />
+      <mat-error *ngIf="password.hasError('incorrect')">Invalid email or password</mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary">{{creating ? 'Create account' : 'Sign In'}}</button>
+    </div>
+    <div class="secondary" *ngIf="!creating">
+      <a mat-button color="primary" (click)="swap()">Create account</a>
+    </div>
+  </form>
+</div>

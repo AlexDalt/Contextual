@@ -1,0 +1,64 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <span class="logo" (click)="home()">Con<span class="dim">text</span>ual</span>
+    <span class="spacer"></span>
+    <div class="search-holder">
+      <mat-icon class="search-icon" (click)="focusSearch()" *ngIf="!(searching$ | async)">search</mat-icon><!--
+      --><mat-icon class="search-icon" (click)="clearSearch()" *ngIf="searching$ | async">close</mat-icon><!--        
+      --><input type="search" placeholder="Search images" class="search-bar" [ngModel]="search" (ngModelChange)="updateSearch($event)" (keyup.enter)="searchImages()" #searchBox />
+    </div>
+    <button mat-icon-button (click)="signOut()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<main>
+  <div class="viewer" *ngIf="viewing">
+    <div class="viewer-background" (click)="closeView()"></div>
+    <img [src]="viewing.url" alt="viewing.name" class="viewer-image mat-elevation-z6" />
+  </div>
+  <div class="file-upload hidden">
+    <input type="file" accept=".jpg, .jpeg, .png" multiple #fileInput (change)="openUpload()" />
+  </div>
+  <button mat-fab class="upload-button" (click)="uploadPrompt()" *ngIf="!uploading">
+    <mat-icon>cloud_upload</mat-icon>
+  </button>
+  <div class="upload-progress mat-elevation-z6" *ngIf="uploading">
+    <div class="icons">
+      <mat-progress-spinner mode="indeterminate" diameter="24" *ngIf="!uploadFinished"></mat-progress-spinner>
+      <mat-icon *ngIf="uploadFinished">done</mat-icon>
+    </div>
+    <p>
+      Uploading {{uploadCount$ | async}} image{{((uploadCount$ | async) > 1) ? 's' : ''}}
+    </p>
+    <mat-progress-bar mode="determinate" [value]="progress$ | async"></mat-progress-bar>
+  </div>
+  <div class="loading" *ngIf="loading$ | async">
+    <!-- <span class="loading-spinner"></span> -->
+    <mat-progress-spinner color="primary" mode="indeterminate" diameter="50"></mat-progress-spinner>
+  </div>
+  <ng-container *ngIf="!(loading$ | async)">
+    <div *ngIf="(images$ | async).length == 0 && (searching$ | async)" class="no-images">
+      No results found
+    </div>
+    <div *ngIf="(images$ | async).length == 0 && !(searching$ | async)" class="no-images">
+      You haven't yet uploaded any images
+    </div>
+  </ng-container>
+  <div class="gallery" *ngIf="!(loading$ | async) && (images$ | async).length > 0">
+    <mat-card *ngFor="let image of images$ | async" class="gallery-image">
+      <!-- http://via.placeholder.com/400x300 -->
+      <div class="image-holder" (click)="view(image)">
+        <img mat-card-image [src]="image.thumbnail" />
+      </div>
+      <div class="gallery-image-options">
+        <button mat-icon-button (click)="delete(image.id)" class="delete-button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <mat-card-content (click)="view(image)">
+        <p>{{image.name}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</main>

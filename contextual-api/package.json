@@ -1,0 +1,29 @@
+{
+  "name": "contextual-api",
+  "version": "0.0.1",
+  "description": "Backend API for contextual",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "8.x.x"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/datastore": "^1.4.0",
+    "@google-cloud/storage": "^1.7.0",
+    "bcrypt": "^1.0.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-fileupload": "^0.3.0",
+    "file-type": "^7.4.0",
+    "jsonwebtoken": "^8.1.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "request": "^2.83.0",
+    "sharp": "^0.18.4"
+  }
+}

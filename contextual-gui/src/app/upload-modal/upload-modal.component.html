@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Upload Image{{images.length > 1 ? 's' : ''}}</h2>
+<div class="previews" [class.preview-single]="images.length == 1">
+  <div *ngFor="let image of images" class="image-preview mat-elevation-z2">
+    <img *ngIf="image.ready" [src]="image.url" />
+  </div>
+</div>
+<!-- <div class="upload-area">
+  Drag and drop an image here to upload
+</div> -->
+<mat-dialog-actions>
+  <button mat-dialog-close mat-button color="primary" tabindex="-1">Cancel</button>
+  <button mat-raised-button color="primary" (click)="upload()">Upload</button>
+</mat-dialog-actions>

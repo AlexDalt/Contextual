@@ -1,0 +1,15 @@
+service: search
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /(\d+)/(\w+)
+  script: search.app
+- url: /submit
+  script: submit.app
+- url: /(\d+)
+  script: delete.app
+
+includes:
+- config.py

@@ -1,0 +1,238 @@
+mat-toolbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1000;
+}
+main {
+    padding-top: 64px;
+    box-sizing: border-box;
+    height: 100%;
+
+    @media screen and (max-width: 600px) {
+        padding-top: 56px;
+    }
+}
+
+.logo {
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+    
+    .dim {
+       color: #FFF;
+    }
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.search-holder {
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    background: rgba(0,0,0,0.2);
+    max-width: 350px;
+    width: 100%;
+    line-height: 2em;
+    display: flex;
+    align-items: stretch;
+    margin-right: 16px;
+    margin-left: 16px;
+}
+.search-icon {
+    padding: 0em 0.5em;
+    display: block;
+    flex: 0 0 auto;
+    color: rgba(255,255,255,0.87);
+    line-height: 1.8em;
+    height: auto;
+    cursor: pointer;
+
+    mat-icon {
+        vertical-align: middle;
+    }
+}
+.search-bar {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.3em 1em 0.3em 0.4em;
+    line-height: 2em;
+    font-size: 1rem;
+    color: #FFF;
+    background: transparent;
+    -webkit-appearance: none;
+
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: rgba(255,255,255,0.54);
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+        color: rgba(255,255,255,0.54);
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+        color: rgba(255,255,255,0.54);
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+        color: rgba(255,255,255,0.54);
+    }
+}
+
+.upload-button {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 1000;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    align-content: center;
+
+    @media screen and (max-width: 767px) {
+        padding: .5em;
+    }
+
+    @media screen and (max-width: 600px) {
+        padding: 0px;
+    }
+}
+
+.gallery-image {
+    cursor: pointer;
+    width: 296px;
+    margin: 1em;
+    box-sizing: border-box;
+    
+    img {
+        object-fit: cover;
+        // width: 300px;
+        // height: 225px;
+        width: 296px;
+        height: 222px;
+    }
+
+    .gallery-image-options {
+        color: #FFF;
+        position: absolute;
+        top: .5em;
+        right: .5em;
+        display: none;
+
+        button {
+            background-color: rgba(0,0,0,0.2);
+        }
+    }
+
+    &:hover .gallery-image-options {
+        display: block;
+    }
+
+    mat-card-content {
+
+        p {
+            overflow-x: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        margin: .5em;
+        width: calc((100vw - 2em)/3 - 1em);
+
+        img {
+            width: calc((100vw - 2em)/3 - 1em);
+            height: calc(((100vw - 2em)/3 - 1em)*0.75);
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        margin: .5em;
+        width: calc((100vw - 1em)/3 - 1em);
+
+        img {
+            width: calc((100vw - 1em)/3 - 1em);
+            height: calc(((100vw - 1em)/3 - 1em)*0.75);
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        margin: 0px;
+        width: calc(100vw/3);
+
+        img {
+            width: calc(100vw/3);
+            height: calc((100vw/3)*0.75);
+        }
+    }
+}
+
+.loading {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 2em;
+
+    mat-progress-spinner {
+        margin: 0px auto;
+    }
+}
+
+.upload-progress {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 1000;
+    width: 200px;
+    padding: 1.5em;
+    font-size: 14px;
+    background: #FFF;
+
+    p {
+        line-height: 24px;
+        margin-top: 0px;
+    }
+
+    .icons {
+        float: right;
+    }
+}
+
+.no-images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: vertical;
+    height: 100%;
+    width: 100%;
+}
+
+.viewer {
+    z-index: 1001;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: vertical;
+
+    .viewer-background {
+        background: rgba(0,0,0,0.75);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+    }
+
+    .viewer-image {
+        max-width: 80vw;
+        max-height: 80vh;
+        z-index: 1002;
+    }
+}
